@@ -13,7 +13,6 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'idea'
 
-
 repositories {
     mavenCentral()
 }
@@ -43,8 +42,6 @@ subprojects{
 
     }
 }
-
-
 
 project(":model"){
     bootRepackage.enabled = false;
