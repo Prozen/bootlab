@@ -32,9 +32,7 @@ public class Application {
     }
 
     public static void main(String... args){
-        System.err.println("foo");
         SpringApplication.run(Application.class, args);
-        System.err.println("bar");
     }
 }
 

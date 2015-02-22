@@ -12,27 +12,69 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'idea'
-apply plugin: 'spring-boot'
 
 
 repositories {
     mavenCentral()
 }
 
-bootRepackage.enabled = false;
-bootRun.enabled = false;
 
-dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
-    compile project(":model")
-    compile project(":rest")
-    compile project(":hateoas")
-    compile project(":security")
-    testCompile("org.springframework.boot:spring-boot-starter-test")
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.12'
+}
+
+
+subprojects{
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'spring-boot'
+
+
+    repositories {
+        mavenCentral()
+    }
+
+    task wrapper(type: Wrapper) {
+        gradleVersion = '1.12'
+    }
+    dependencies{
+        compile("org.springframework.boot:spring-boot-starter-web")
+        testCompile("org.springframework.boot:spring-boot-starter-test")
+
+    }
 }
 
 
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '1.12'
+project(":model"){
+    bootRepackage.enabled = false;
+    bootRun.enabled = false;
+
+    dependencies {
+        compile("org.springframework.boot:spring-boot-starter-data-jpa")
+        compile("com.h2database:h2")
+    }
+}
+
+project(":security"){
+    dependencies {
+        compile("com.jayway.jsonpath:json-path")
+        compile("org.springframework.security.oauth:spring-security-oauth2:2.0.6.RELEASE")
+        compile("org.springframework.hateoas:spring-hateoas")
+        compile project(":model")
+    }
+}
+
+project(":hateoas"){
+    dependencies {
+        compile("com.jayway.jsonpath:json-path")
+        compile project(":model")
+    }
+}
+
+project(":rest"){
+    dependencies {
+        compile("com.jayway.jsonpath:json-path")
+        compile project(":model")
+    }
 }
