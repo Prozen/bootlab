@@ -1,0 +1,38 @@
+buildscript {
+    ext {
+        springBootVersion = '1.2.1.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+
+repositories {
+    mavenCentral()
+}
+
+bootRepackage.enabled = false;
+bootRun.enabled = false;
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile project(":model")
+    compile project(":rest")
+    compile project(":hateoas")
+    compile project(":security")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}
+
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.12'
+}
