@@ -65,6 +65,7 @@ project(":security"){
 project(":hateoas"){
     dependencies {
         compile("com.jayway.jsonpath:json-path")
+        compile("org.springframework.hateoas:spring-hateoas")
         compile project(":model")
     }
 }
