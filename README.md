@@ -10,8 +10,7 @@ The tutorial includes four main steps:
 
 Each step is executed in a separate module of the project.
 
-This project contains the four modules (model, rest, hateoas, security) and complete pom.xml files and can be used as
-a starting point when following the tutorial.
+This project contains the four modules (model, rest, hateoas, security) and complete build.gradle file and can be used as a starting point when following the tutorial.
 
 ## Run application
 The REST, HATEOAS and security step/module contains an Application class with a main method starting the application.
